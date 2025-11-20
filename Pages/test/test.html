@@ -1,0 +1,129 @@
+<ion-header>
+  
+  <ion-navbar>
+    <ion-title>Law Today
+     
+   <!-- <button end ion-button color="success" (click)="getCategoryTestDataSave(1)">Update Data</button>
+ -->
+  </ion-title>
+  </ion-navbar>
+  <ion-toolbar no-border-top class="header-tab">
+    <ion-segment [(ngModel)]="selectedTab">
+      <ion-segment-button [value]="slide.id" *ngFor="let slide of slides">
+        {{slide.title}}
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #content>
+ 
+  <div [ngSwitch]="selectedTab">
+    <ng-container *ngSwitchCase="'first'">
+      <ng-container *ngIf="categoryTestData">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-12>
+              <h4 text-center class="uc-title">Test Category</h4>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="bg-grey">
+          <ion-row>
+            <ion-col col-12>
+              <ion-scroll class="feature-test-scroll" scrollX="true">
+                <div class="feature-tab" *ngFor="let cat of categoryTestData; let catIndex =index" [class.active]="catIndex == isActiveCategory" (click)="getSelectedCatTopicTest(catIndex)">
+                  {{cat.name}}
+                </div>
+              </ion-scroll>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ng-container>
+      <div class="custom-loader" no-padding text-center *ngIf="!categoryTestData">
+        <img height="55" src="assets/images/ring.svg">
+      </div>
+      <ng-container *ngIf="catTopicsData">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-12>
+              <h4 text-center class="uc-title">Topic</h4>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="bg-grey">
+          <ion-row>
+            <ion-col col-12>
+              <ion-scroll class="feature-test-scroll" scrollX="true">
+            
+            <!--   <div class="feature-tab" [class.active]="isActiveCategoryTopic == 'ALL'"
+                 (click)="getSelectedCatTopic('ALL')">All</div>
+             --> 
+             
+                <div class="feature-tab" *ngFor="let topic of catTopicsData; let topicIndex =index" [class.active]="topicIndex == isActiveCategoryTopic" (click)="getSelectedCatTopic(topicIndex)">
+                  {{topic.name}}
+                </div>
+              </ion-scroll>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid margin-bottom *ngIf="catTopicTestData">
+          <ion-row>
+            <ion-col col-12>
+              <ion-list no-lines no-margin text-wrap>
+                <ion-item class="feature-test__item" *ngFor="let test of catTopicTestData; let i = index">
+                  <h2 class="text-primary">{{test.name}}</h2>
+                  <p>{{test.questions.length}} Ques | {{test.duration}} Mins</p>
+                  <button ion-button item-end color="gray" *ngIf="i !=0 && !isSubscribed && test.questions.length" (click)="goUnlockTest()">
+                    <ion-icon margin-right ios="ios-lock" md="ios-lock"></ion-icon>
+                    Unlock
+                  </button>
+                  <button ion-button item-end color="primary" *ngIf="i !=0 && isSubscribed && test.questions.length" (click)="goToStartFreeTest(test)">
+                    Start 
+                  </button>
+                  <button ion-button item-end color="primary" *ngIf="i == 0 && test.questions.length > 0" (click)="goToStartFreeTest(test)">
+                    Start
+                  </button>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ng-container>
+    </ng-container>
+
+
+
+    <ng-container *ngSwitchCase="'second'">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12>
+            <h4 text-center class="uc-title">Previous Year Papers</h4>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid margin-bottom>
+        <ion-row>
+          <ion-col col-12>
+            <ion-list no-lines no-margin text-wrap>
+              <ion-item class="feature-test__item" *ngFor="let item of practiseTestData; let i=index">
+                <h2 class="text-primary">{{item.name}}</h2>
+                <p>{{item.questions.length}} Ques</p>
+                <button ion-button item-end color="gray" *ngIf="i !=0 && !isSubscribed && item.questions.length" (click)="goUnlockTest()">
+                  <ion-icon margin-right ios="ios-lock" md="ios-lock"></ion-icon>
+                  Unlock
+                </button>
+                <button ion-button item-end color="primary" *ngIf="i !=0 && isSubscribed && item.questions.length" (click)="goToStartFreeTest(item)">
+                  Start 
+                </button>
+                <button ion-button item-end color="primary" *ngIf="i == 0 && item.questions.length > 0" (click)="goToStartFreeTest(item)">
+                  Start
+                </button>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ng-container>
+  </div>
+</ion-content>

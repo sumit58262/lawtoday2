@@ -1,0 +1,36 @@
+<ion-content class="report-modal-page">
+  <div padding class="bg-white">
+    <h6 style="margin-bottom:0px;">Report Question</h6>
+    <form [formGroup]="reportForm" (ngSubmit)="onReport()">
+      <ion-row>
+        <ion-col>
+          <div class="question-name">
+            <div [innerHtml]="remove_linebreaks(question.name)"></div>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="form-float-field">
+          <ion-label style="margin-top:0px;">Message</ion-label>
+          <div class="border">
+            <ion-input formControlName="message" [class.error-box]="false" name="message" required></ion-input>
+          </div>
+          <span class="error-msg"
+            [hidden]="!(reportForm.controls['message'].errors?.required && (reportForm.controls['message'].dirty || isFormSubmitted)  &&  isFieldValid('message'))">
+            message is required
+          </span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <button ion-button type="button" block text-capitalize color="gray" small (click)="dismiss()">
+            Cancel
+          </button>
+        </ion-col>
+        <ion-col col-6>
+          <button block ion-button color="primary" small type="button" (click)="onReport()">Submit</button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </div>
+</ion-content>

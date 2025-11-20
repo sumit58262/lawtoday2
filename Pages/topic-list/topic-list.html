@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Topics</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="list-default list-wrap ">
+    <ion-item padding-left *ngFor="let topic of topicData; let i= index">
+      <ion-label>{{topic.name}}</ion-label>
+      <ion-checkbox [(ngModel)]="topic.isChecked"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <button class="square" no-margin ion-button block color="primary" (click)="getCheckedTopic()">Next</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

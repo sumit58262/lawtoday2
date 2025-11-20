@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Review Answers</ion-title>
+    <ion-buttons end *ngIf="index + 1 <= questionData.length">
+     
+      <button *ngIf="questionItems.id != selectedBookmark" ion-button (click)="addBookmark()">
+        <img class="bookmark" src="assets/images/cat/bookmark.png" />
+      </button>
+      <button ion-button *ngIf="selectedBookmark && questionItems.id == selectedBookmark" (click)="addBookmark()">
+        <img class="bookmark" src="assets/images/cat/bookmarked.png" />
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content #content padding>
+  <div class="question-content" *ngIf="index + 1 <= questionData.length">
+    <div class="question-name"><div [innerHtml]="remove_linebreaks(questionItems.name)"></div></div>
+    <ion-list margin-vertical class="list-radio" radio-group>
+      <ng-container *ngFor="let option of questionItems.answers; let i = index">
+        <ion-item text-wrap class="list-option" *ngIf="selectedAnswer !=''"
+          [ngClass]="{'bg-success': option.is_correct == 1, 'bg-danger':selectedAnswer.id == option.id && option.is_correct==0 }">
+      
+          <ion-label>{{option.answer}}</ion-label>
+        </ion-item>
+        <ion-item class="list-option" *ngIf="selectedAnswer == ''" [ngClass]="{'bg-success': option.is_correct == 1}">
+        
+          <ion-label>{{option.answer}}</ion-label>
+        </ion-item>
+      </ng-container>
+    </ion-list>
+    <button ion-button color="danger" (click)="presentReportModal()">
+      Report Question
+     </button>
+  </div>
+ 
+  <ng-container *ngIf="index + 1 > questionData.length">
+    <ion-item class="list-result">
+      <ion-icon color="success" ios="ios-checkmark-circle-outline" md="ios-checkmark-circle-outline"></ion-icon>
+      <h4 class="list-result-title " (click)="onCompleted()">
+        Congratulations! You have reviewed answers successfully.
+      </h4>
+    </ion-item>
+  </ng-container>
+</ion-content>
+
+<ion-footer>
+  <ion-grid>
+    <ion-row *ngIf="index + 1 <= questionData.length">
+      <ion-col col-5>
+        <button type="button" class="square" no-margin ion-button block color="primary" (click)="onPrev()">Prev</button>
+      </ion-col>
+      <ion-col col-2>
+        <button type="button" class="square" no-margin ion-button block color="gray"
+        (click)="onQuestionAttempted()">
+          {{index + 1}}/{{questionData.length}} 
+        </button>
+      </ion-col>
+      <ion-col col-5>
+        <button class="square" no-margin ion-button block color="primary" (click)="onNext()">Next</button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="index + 1 > questionData.length">
+      <ion-col>
+        <button class="square" no-margin ion-button block color="success" (click)="onCompleted()">Go Back</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

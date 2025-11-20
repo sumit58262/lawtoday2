@@ -1,0 +1,36 @@
+page-reportmodal {
+  .modal-wrapper {
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  .question-name{
+    font-size: 1.2rem;
+    color: #000;
+    font-weight: 600;
+    p{
+      margin-bottom: 0px;
+    }
+  }
+}
+
+.report-modal-page{
+  background: transparent;
+  .scroll-content{
+    background: transparent;
+    overflow: hidden;
+  }
+  .bg-white{
+    background:#fff;
+  }
+}
+
+.uc-report-modal {
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.82);
+  .modal-wrapper {
+    border-radius: 7px;
+    background: transparent;
+    height: 100%;
+    margin-top: 0;
+  }
+}

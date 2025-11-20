@@ -1,0 +1,25 @@
+page-subscription {
+  .plan-duration {
+    font-size: 16px;
+    background: #ffffff;
+    color: #000;
+    
+    
+  }
+
+  .plan-price {
+    font-size: 24px;
+    padding: 0px 0px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    border-radius : 30px; 
+
+    
+    
+  }
+}

@@ -1,0 +1,179 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Law Today</ion-title>   
+  </ion-navbar>
+</ion-header>
+<ion-content class="login-page registration-section-bg">
+  <div class="section registration-section">
+    <form [formGroup]="registerForm" novalidate (ngSubmit)="onSignup()">
+      <ion-row>
+        <ion-col col-12 text-center>
+            <img class="user-pic" [src]="myProfile? myProfile.url :'assets/images/user_pic.png'" />
+            <p class="text-white">Select Profile Picture</p>
+            <ion-scroll class="story" scrollX="true">
+              <div class="story_scroll" *ngFor="let item of imgData" (click)="setProfileImage(item)">
+                <div class="story_img_bg">
+                  <img no-margin no-padding class="story_img profile-bg-color" [src]="item.url" alt=""
+                    [class.active]="item.id == (myProfile ? myProfile.id :'')" />
+                </div>
+              </div>
+            </ion-scroll>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="form-float-field">
+          <ion-item>
+            <ion-label color="primary" floating>Full Name</ion-label>
+            <ion-input formControlName="name" [class.error-box]="false" name="name" type="text" required>
+            </ion-input>
+          </ion-item>
+          <span class="error-msg"
+            [hidden]="!(registerForm.controls.name.hasError('required') && (registerForm.controls['name'].dirty || isFormSubmitted) && isFieldValid('name'))">
+            Full Name is required.
+          </span>
+          <span class="error-msg"
+            [hidden]="!(registerForm.controls.name.hasError('minlength') && (registerForm.controls['name'].dirty || isFormSubmitted) && !registerForm.controls['name'].errors?.required && !registerForm.controls.name.hasError('pattern'))">
+            Full Name minimum length is 3.
+          </span>
+          <span class="error-msg"
+            [hidden]="!(registerForm.controls.name.hasError('maxlength') && (registerForm.controls['name'].dirty || isFormSubmitted) && !registerForm.controls['name'].errors?.required && !registerForm.controls.name.hasError('pattern'))">
+            Full Name maximum length is 30.
+          </span>
+          <span class="error-msg"
+            [hidden]="!(registerForm.controls.name.hasError('pattern') && (registerForm.controls['name'].dirty || isFormSubmitted) && !registerForm.controls['name'].errors?.required)">
+            Please enter alphabets only.
+          </span>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="form-float-field">
+          <ion-item>
+            <ion-label color="primary" floating>Email Address</ion-label>
+            <ion-input [class.error-box]="false" formControlName="email" name="email" type="email" required>
+            </ion-input>
+          </ion-item>
+          <span class="error-msg"
+            [hidden]="!(registerForm.controls['email'].errors?.required && (registerForm.controls['email'].dirty || isFormSubmitted) &&  isFieldValid('email'))">
+            Email address is required.
+          </span>
+          <span class="error-msg"
+            [hidden]="!(registerForm.controls.email.hasError('maxlength') && (registerForm.controls['email'].dirty || isFormSubmitted) && !registerForm.controls['email'].errors?.required && !registerForm.controls.email.hasError('pattern'))">
+            Email address maximum length is 100.
+          </span>
+          <span class="error-msg"
+            [hidden]="!(registerForm.controls.email.hasError('pattern') && (registerForm.controls['email'].dirty || isFormSubmitted) && !registerForm.controls['email'].errors?.required)">
+            Please enter valid email address.
+          </span>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="form-float-field">
+          <ion-item>
+            <ion-label color="primary" floating>Password</ion-label>
+            <ion-input formControlName="password" [class.error-box]="false" name="password" type="password" required>
+            </ion-input>
+          </ion-item>
+          <span class="error-msg"
+            [hidden]="!(registerForm.controls['password'].errors?.required && (registerForm.controls['password'].dirty || isFormSubmitted)  &&  isFieldValid('password'))">
+            Password is required.
+          </span>
+          <span class="error-msg"
+            [hidden]="!(registerForm.controls.password.hasError('minlength') && (registerForm.controls['password'].dirty || isFormSubmitted) && !registerForm.controls['password'].errors?.required)">
+            Password minimum length is 6.
+          </span>
+          <span class="error-msg"
+            [hidden]="!(registerForm.controls.password.hasError('maxlength') && (registerForm.controls['password'].dirty || isFormSubmitted) && !registerForm.controls['password'].errors?.required)">
+            Password maximum length is 20.
+          </span>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="form-float-field">
+          <ion-item>
+            <ion-label floating>Confirm Password</ion-label>
+            <ion-input formControlName="password_confirmation" [class.error-box]="false" name="password_confirmation"
+              type="password" required></ion-input>
+            <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>
+          </ion-item>
+          <span class="error-msg"
+            [hidden]="!(registerForm.controls['password_confirmation'].errors?.required && (registerForm.controls['password_confirmation'].dirty || isFormSubmitted)  &&  isFieldValid('password_confirmation'))">
+            Confirm Password is required
+          </span>
+          <span class="error-msg"
+            [hidden]="!(registerForm.controls.password_confirmation.hasError('minlength') && (registerForm.controls['password_confirmation'].dirty || isFormSubmitted) && !registerForm.controls['password_confirmation'].errors?.required)">
+            Confirm Password minimum length is 6
+          </span>
+          <span class="error-msg"
+            [hidden]="!(registerForm.controls.password_confirmation.hasError('maxlength') && (registerForm.controls['password_confirmation'].dirty || isFormSubmitted) && !registerForm.controls['password_confirmation'].errors?.required)">
+            Confirm Password maximum length is 20
+          </span>
+          <span class="error-msg"
+            [hidden]="!(registerForm.controls.password_confirmation.hasError('equalTo') && (registerForm.controls['password_confirmation'].dirty || isFormSubmitted) && !registerForm.controls['password_confirmation'].errors?.required && !registerForm.controls.password_confirmation.hasError('minlength') && !registerForm.controls.password_confirmation.hasError('maxlength'))">
+            Password & Confirm Password should be same
+          </span>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col col-12 class="form-float-field">
+          <ion-item>
+            <ion-label color="primary" floating>Phone</ion-label>
+            <ion-input formControlName="phone_number" [class.error-box]="false" name="phone_number" type="number"
+              required>
+            </ion-input>
+          </ion-item>
+          <span class="error-msg"
+            [hidden]="!(registerForm.controls['phone_number'].errors?.required && (registerForm.controls['phone_number'].dirty || isFormSubmitted)  &&  isFieldValid('phone_number'))">
+            Phone is required.
+          </span>
+          <span class="error-msg"
+            [hidden]="!(registerForm.controls.phone_number.hasError('minlength') && (registerForm.controls['phone_number'].dirty || isFormSubmitted) && !registerForm.controls['phone_number'].errors?.required && !registerForm.controls.phone_number.hasError('pattern'))">
+            Phone minimum length is 10.
+          </span>
+          <span class="error-msg"
+            [hidden]="!(registerForm.controls.phone_number.hasError('maxlength') && (registerForm.controls['phone_number'].dirty || isFormSubmitted) && !registerForm.controls['phone_number'].errors?.required && !registerForm.controls.phone_number.hasError('pattern'))">
+            Phone maximum length is 10.
+          </span>
+          <span class="error-msg"
+            [hidden]="!(registerForm.controls.phone_number.hasError('pattern') && (registerForm.controls['phone_number'].dirty || isFormSubmitted) && !registerForm.controls['phone_number'].errors?.required)">
+            Please enter number only.
+          </span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="form-float-field">
+          <ion-item>
+            <ion-label color="primary" floating>Referral Code</ion-label>
+            <ion-input [class.error-box]="false" formControlName="referred_by" name="referred_by" type="referred_by">
+            </ion-input>
+          </ion-item>
+         
+        </ion-col>
+      </ion-row>
+
+      <ion-item no-lines text-wrap no-padding class="custom-checkbox no-bg">
+        <ion-label class="btn-terms text-white">I accept the <span color ="primary" (click)="goToTos()">Terms of Services</span> and <span color ="primary" (click)="goToPrivacy()">Privacy
+            policy</span>
+        </ion-label>
+      </ion-item>
+
+      <ion-row margin-top align-items-center>
+        <ion-col col-12 text-left>
+          <button block ion-button color="primary" type="submit">Sign up</button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+    <ion-row>
+      <ion-col col-12 text-center>
+        <ion-label class="btn-link btn-signup" no-margin [navPush]="login">
+          <span class="text-white">Already have an account?</span>&nbsp;<strong>Log In</strong>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

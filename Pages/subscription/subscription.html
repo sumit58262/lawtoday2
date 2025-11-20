@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Subscription</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+  <ion-grid margin-bottom class="uc-grid">
+    <ion-row >
+      <ion-col >
+  <ion-card *ngFor="let plan of subscriptionData.plans">
+    
+   
+    <ion-card-header>
+    <div class="plan-duration" color="white" [class.subscribed]="subscriptionData.order && subscriptionData.order.plan_id == plan.id" text-center >
+   <h2>{{plan.name}} (Duration: {{plan.duration}} Days)</h2>  Rs. {{plan.price}}
+   <img src="{{plan.image}}">
+    </div>
+  </ion-card-header>
+  
+  <button ion-button block (click)="payByPayU(plan.id, plan.price)" *ngIf="!subscriptionData.order || subscriptionData.order.plan_id != plan.id">Subscribe</button>
+      <button ion-button block color="success" *ngIf="subscriptionData.order && subscriptionData.order.plan_id == plan.id">Plan Subscribed</button>
+    <!--
+     <button ion-button block (click)="payWithRazor(plan.price, plan.id, plan.duration)" *ngIf="!subscriptionData.order || subscriptionData.order.plan_id != plan.id">Subscribe</button>
+      <button ion-button block color="success" *ngIf="subscriptionData.order && subscriptionData.order.plan_id == plan.id">Plan Subscribed</button>
+     -->
+  </ion-card>
+</ion-col>
+
+
+</ion-row>
+</ion-grid>
+<ion-grid>
+  <ion-card >
+    <ion-card-content>
+      <div text-wrap >
+      <p> Please Read <a href="https://lawtoday.co.in/membership.html" target="_blank">Membership information</a> to know what your subscription include.
+        </p>
+       
+      </div>
+      </ion-card-content>
+    </ion-card>
+</ion-grid>
+
+</ion-content>
