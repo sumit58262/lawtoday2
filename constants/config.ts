@@ -1,0 +1,38 @@
+export const BASE_URL: string = 'https://lawtoday.co.in/qb1/public/';
+export const API_BASE_URL: string = 'https://lawtoday.co.in/qb1/public/api/';
+// export const API_BASE_URL: string = 'https://localhost:8000/api/';
+export const CONFIG: any = {
+    API_LOGIN_URL: { URL: API_BASE_URL + 'login', METHOD: 'POST' },
+    API_GUESTLOGIN_URL: { URL: API_BASE_URL + 'guestlogin', METHOD: 'POST' },
+    API_REGISTER_URL: { URL: API_BASE_URL + 'register', METHOD: 'POST' },
+    API_SENDOTP_URL: { URL: API_BASE_URL + 'forgot_password', METHOD: 'POST' },
+    API_SENDEMAILOTP_URL: { URL: API_BASE_URL + 'emailverifyotp', METHOD: 'POST' },
+    API_VERIFYEMAILOTP_URL: { URL: API_BASE_URL + 'verifyemailotp', METHOD: 'POST' },
+    API_VERIFYOTP_URL: { URL: API_BASE_URL + 'verify_otp', METHOD: 'POST' },
+    API_RESET_PASSWORD_URL: { URL: API_BASE_URL + 'reset_password', METHOD: 'POST' },
+    API_GET_USER_URL: { URL: API_BASE_URL + 'me', METHOD: 'GET' },
+    API_GET_USER_REFERRAL_URL: { URL: API_BASE_URL + 'referral', METHOD: 'GET' },
+    API_PAYMENT_SUCCESS_URL: { URL: API_BASE_URL + 'success', METHOD: 'POST' },
+    API_UPDATE_USER_URL: { URL: API_BASE_URL + 'update_userdata', METHOD: 'POST' },
+    API_CHANGEPASSWORD_URL: { URL: API_BASE_URL + 'me/change_password', METHOD: 'PUT' },
+    API_LOGOUT_URL: { URL: API_BASE_URL + 'logout', METHOD: 'DELETE' },
+    API_GET_BOOKMARKS_URL: { URL: API_BASE_URL + 'bookmarks', METHOD: 'GET' },
+    API_ADD_BOOKMARKS_URL: { URL: API_BASE_URL + 'bookmarks', METHOD: 'POST' },
+    API_GET_CATEGORIES_URL: { URL: API_BASE_URL + 'categories', METHOD: 'GET' },
+    API_GET_TOPICS_URL: { URL: API_BASE_URL + 'topics', METHOD: 'GET' },
+    API_SAVE_TEST_RESULT_URL: { URL: API_BASE_URL + 'response', METHOD: 'POST' },
+    API_SAVE_TEST_SCORE_URL: { URL: API_BASE_URL + 'savescore', METHOD: 'POST' },
+    API_GET_SAVED_SCORE_URL: { URL: API_BASE_URL + 'sendallscore', METHOD: 'GET' },
+    API_SAVE_GENERATE_TEST_RESULT_URL: { URL: API_BASE_URL + 'test_generate', METHOD: 'PUT' },
+    API_GENERATE_TEST_URL: { URL: API_BASE_URL + 'test_generate', METHOD: 'POST' },
+    API_GENERATE_TEST_DELETE_URL: { URL: API_BASE_URL + 'test_generate', METHOD: 'DELETE' },
+    API_GET_GENERATED_TEST_HISTORY_URL: { URL: API_BASE_URL + 'test_generate/history', METHOD: 'GET' },
+    API_GET_TEST_HISTORY_URL: { URL: API_BASE_URL + 'response', METHOD: 'GET' },
+    API_ADD_REPORT_URL: { URL: API_BASE_URL + 'report', METHOD: 'POST' },
+    API_UPDATE_PROFILE_PICTURE_URL: { URL: API_BASE_URL + 'avatar', METHOD: 'POST' },
+    API_NOTIFICATIONS_URL: { URL: API_BASE_URL + 'notifications', METHOD: 'GET' },
+    API_NOTIFICATION_DETAIL_URL: { URL: API_BASE_URL + 'notification', METHOD: 'GET' },
+    API_CASELAWS_URL: { URL: API_BASE_URL + 'caselaws', METHOD: 'GET' },
+    API_GET_SUBSCRIPTION_URL: { URL: API_BASE_URL + 'plans', METHOD: 'GET' },
+    
+}

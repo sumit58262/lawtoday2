@@ -1,0 +1,28 @@
+<ion-menu class="menu-content" [content]="content" (ionOpen)="menuOpened()" (ionClose)="menuClosed()"  type="overlay">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>
+        <img class="user-pic" [src]="myProfile? myProfile.url :'assets/images/user_pic.png'" alt="logo">
+        <h6>{{currentUser}}</h6>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list no-lines class="menu">
+      <ng-container *ngFor="let p of menuPages">
+        <button menuClose ion-item detail-none (click)="openPage(p)">
+          <img class="menu__icon" [src]="p.icon" alt="icon" />
+          {{p.title}} 
+        </button>
+      </ng-container>
+      <button menuClose ion-item detail-none (click)="logout()">
+        <img class="menu__icon" src="assets/images/menu/logout.png" alt="icon" />
+        Logout
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeEnabled="false" swipeBackEnabled="false"></ion-nav>
