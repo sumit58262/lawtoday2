@@ -1,0 +1,92 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Contact Us</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding class="contact-section-bg">
+  <div class="section contact-section">
+    <form [formGroup]="contactForm" novalidate (ngSubmit)="onSignup()">
+      <ion-row>
+        <ion-col class="form-float-field">
+          <ion-item>
+            <ion-label color="primary" floating>Name</ion-label>
+            <ion-input formControlName="user_name" [class.error-box]="false" name="name" type="text" required>
+            </ion-input>
+          </ion-item>
+          <span class="error-msg"
+            [hidden]="!(contactForm.controls.user_name.hasError('required') && (contactForm.controls['user_name'].dirty || isFormSubmitted) && isFieldValid('user_name'))">
+            Full Name is required.
+          </span>
+          <span class="error-msg"
+            [hidden]="!(contactForm.controls.user_name.hasError('minlength') && (contactForm.controls['user_name'].dirty || isFormSubmitted) && !contactForm.controls['user_name'].errors?.required && !contactForm.controls.user_name.hasError('pattern'))">
+            Full Name minimum length is 3.
+          </span>
+          <span class="error-msg"
+            [hidden]="!(contactForm.controls.user_name.hasError('maxlength') && (contactForm.controls['user_name'].dirty || isFormSubmitted) && !contactForm.controls['user_name'].errors?.required && !contactForm.controls.user_name.hasError('pattern'))">
+            Full Name maximum length is 30.
+          </span>
+          <span class="error-msg"
+            [hidden]="!(contactForm.controls.user_name.hasError('pattern') && (contactForm.controls['user_name'].dirty || isFormSubmitted) && !contactForm.controls['user_name'].errors?.required)">
+            Please enter alphabets only.
+          </span>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="form-float-field">
+          <ion-item>
+            <ion-label color="primary" floating>Phone</ion-label>
+            <ion-input formControlName="user_mobile" [class.error-box]="false" name="user_mobile" type="number"
+              required>
+            </ion-input>
+          </ion-item>
+          <span class="error-msg"
+            [hidden]="!(contactForm.controls['user_mobile'].errors?.required && (contactForm.controls['user_mobile'].dirty || isFormSubmitted)  &&  isFieldValid('user_mobile'))">
+            Phone is required.
+          </span>
+          <span class="error-msg"
+            [hidden]="!(contactForm.controls.user_mobile.hasError('minlength') && (contactForm.controls['user_mobile'].dirty || isFormSubmitted) && !contactForm.controls['user_mobile'].errors?.required && !contactForm.controls.user_mobile.hasError('pattern'))">
+            Phone minimum length is 10.
+          </span>
+          <span class="error-msg"
+            [hidden]="!(contactForm.controls.user_mobile.hasError('maxlength') && (contactForm.controls['user_mobile'].dirty || isFormSubmitted) && !contactForm.controls['user_mobile'].errors?.required && !contactForm.controls.user_mobile.hasError('pattern'))">
+            Phone maximum length is 10.
+          </span>
+          <span class="error-msg"
+            [hidden]="!(contactForm.controls.user_mobile.hasError('pattern') && (contactForm.controls['user_mobile'].dirty || isFormSubmitted) && !contactForm.controls['user_mobile'].errors?.required)">
+            Please enter number only.
+          </span>
+        </ion-col>
+      </ion-row>
+
+      <ion-row margin-top align-items-center>
+        <ion-col col-12 text-left>
+          <button block ion-button color="primary" type="submit">Request a Call Back</button>
+        </ion-col>
+      </ion-row>
+      <div class="contact-detail" margin-top>
+        <ion-item-group>
+
+          <ion-item-divider color="primary">Customer Support</ion-item-divider>
+          <ion-item>
+            <ion-icon ios="ios-mail" md="ios-mail" item-start></ion-icon>
+            Email: <a href="mailto:lawtodayin@gmail.in">lawtodayin@gmail.com</a>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="logo-whatsapp" item-start> </ion-icon>
+            Whatsapp No: <a href="tel:+919582041578">+91-9582041578</a>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="paper-plane" item-start> </ion-icon>
+            Telegram: <a href="https://t.me/judiciarytoday">@judiciarytoday</a>
+          </ion-item>
+
+        </ion-item-group>
+      </div>
+    </form>
+  </div>
+</ion-content>

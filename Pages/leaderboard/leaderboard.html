@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Law Today-Leaderboard</ion-title>   
+  </ion-navbar>
+</ion-header>
+ 
+<ion-content class="bg-style"> 
+ <!--
+	  <div class="leaderboard">
+      <h1>
+        <svg class="ico-cup"> 
+          <use xlink:href="#cup"></use>
+        </svg>
+        Most active Players
+      </h1>
+    <ion-list *ngFor="let item of scores; let i= index">
+      <ion-item > 
+       
+        <mark>{{ item.username }}</mark>
+        <small>{{ item.score }}</small>
+      
+        </ion-item>
+      </ion-list> -->
+      <div class="center" >
+
+
+        <div class="top3" *ngFor="let item of scores; let i= index">
+        <!--   <div class="two item">
+             <div class="pos">
+              2
+            </div>
+            <div class="pic" style="background-image: url(&#39;https://randomuser.me/api/portraits/men/44.jpg&#39;)"></div>
+            <div class="name" >
+             {{item.username}}
+            </div>
+            <div class="score">
+              {{item.score}}
+            </div>
+          </div>  -->   
+          <div class="one item" *ngIf="i==0">
+            <div class="pos">
+              {{i+1}}
+            </div>
+            <div class="pic" style="background-image: url(assets/images/logo1.png)"></div>
+            <div class="name">
+              {{item.username}}
+            </div>
+            <div class="score">
+              {{item.score}}
+            </div>
+          </div>
+     <!--  <div class="three item">
+            <div class="pos">
+              3
+            </div>
+            <div class="pic" style="background-image: url(&#39;https://randomuser.me/api/portraits/women/91.jpg&#39;)"></div>
+            <div class="name">
+              Nevaeh Silva
+            </div>
+            <div class="score">
+              6034
+            </div>
+          </div> -->
+        </div>
+       
+        <ion-list *ngFor="let item of scores; let i= index">
+            <div *ngIf="i>0" class="item" >
+              <div class="pos">
+               {{i+1}}.
+              </div>
+              <div *ngIf="item.profile_pic==null || item.profile_pic=='image'" class="pic"><img src="assets/images/logo1.png"></div>
+              
+              <div *ngIf="item.profile_pic!=null && item.profile_pic!='image'" class="pic"><img src="{{item.profile_pic}}"></div>
+              <div class="name"> 
+                {{item.username}}
+              </div>
+              <div class="score"> 
+                {{item.score}}
+              </div>
+            </div>
+           </ion-list>
+</div>
+</ion-content>
+<footer>
+  
+</footer>

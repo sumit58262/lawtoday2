@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>History</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="testResultData.length > 0">
+    <ion-card *ngFor="let result of testResultData">
+      <ion-card-header *ngIf="result.test">
+        {{result.test.name}}
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid class="result-info">
+          <ion-row>
+            <ion-col col-6 class="result-info__col">
+              <div class="badge badge-primary">
+                <strong>{{result.total}}</strong>
+                <p>Total Questions</p>
+              </div>
+            </ion-col>
+            <ion-col col-6 class="result-info__col">
+              <div class="badge badge-warning">
+                <strong>{{result.attemted}}</strong>
+                <p>Total Attempted</p>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-6 class="result-info__col">
+              <div class="badge badge-success">
+                <strong>{{result.correct}}</strong>
+                <p>Total Correct</p>
+              </div>
+            </ion-col>
+            <ion-col col-6 class="result-info__col">
+              <div class="badge badge-danger">
+                <strong>{{result.incorrect}}</strong>
+                <p>Total Incorrect</p>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-icon name="calendar"></ion-icon>&nbsp;<span>{{ucDateTransform(result.created_at)}}</span>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+
+  <ion-item class="list-result" *ngIf="testResultData.length <=0">
+    <ion-icon color="grey" ios="ios-alert-outline" md="ios-alert-outline"></ion-icon>
+    <h4 class="list-result-title">
+      No history data found.
+    </h4>
+  </ion-item>
+</ion-content>

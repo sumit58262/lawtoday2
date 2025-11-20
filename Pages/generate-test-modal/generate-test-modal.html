@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Generated Test Result</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="testData">
+    <ion-card-content>
+      <ion-grid class="result-info">
+        <ion-row>
+          <ion-col col-6 class="result-info__col">
+            <div class="badge badge-primary">
+              <strong>{{totalQuestion?totalQuestion:0}}</strong>
+              <p>Total Questions</p>
+            </div>
+          </ion-col>
+          <ion-col col-6 class="result-info__col">
+            <div class="badge badge-warning">
+              <strong>{{testData.attemted?testData.attemted:0}}</strong>
+              <p>Total Attempted</p>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-6 class="result-info__col">
+            <div class="badge badge-success">
+              <strong>{{testData.correct? testData.correct: 0}}</strong>
+              <p>Total Correct</p>
+            </div>
+          </ion-col>
+          <ion-col col-6 class="result-info__col">
+            <div class="badge badge-danger">
+              <strong>{{testData.incorrect? testData.incorrect: 0 }}</strong>
+              <p>Total Incorrect</p>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-icon name="calendar"></ion-icon>&nbsp;<span>{{ucDateTransform(testData.created_at)}}</span>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <button ion-button type="button" block text-capitalize color="gray" (click)="dismiss()">
+          Back
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

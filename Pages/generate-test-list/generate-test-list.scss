@@ -1,0 +1,11 @@
+page-generate-test-list {
+  .feature-test {
+    &__item {
+      border: 1px solid #ccc !important;
+
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

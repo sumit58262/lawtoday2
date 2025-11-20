@@ -1,0 +1,27 @@
+page-category-test-type {
+    .list-icons{
+        .item-md,
+        .item-ios{
+            padding: 25px 16px 25px  25px;
+            border-bottom:1px solid #ccc !important;
+            &:nth-child(1){
+                border-left:5px solid #FF5454 !important;
+            }
+            &:nth-child(2){
+                border-left:5px solid #FF8133 !important;
+            }
+            &:nth-child(3){
+                border-left:5px solid #5ab4fb !important;
+            }
+           &:nth-child(4){
+                border-left:5px solid #5afbf3 !important;
+            }
+            &:nth-child(5){
+                border-left:5px solid #4752b8 !important;
+            }
+            .title{
+                font-size:1.8rem;
+            }
+        }
+    }
+}

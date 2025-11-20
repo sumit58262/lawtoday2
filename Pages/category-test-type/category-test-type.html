@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Law Today</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding>
+
+  <ion-list class="list-icons" no-lines text-wrap>
+    <ng-container *ngFor="let item of categoryTestTypeList" >
+
+      <ion-item *ngIf="item.id == 2 && !isSubscribed" (click)="goUnlockTest()">
+        <ion-icon class="uc-icon bg-blue" [ios]="item.icon" [md]="item.icon" item-start></ion-icon>
+        <h3 class="title">{{item.title}}</h3>
+        <em>Only for Premium user</em>
+      </ion-item>
+
+      <ion-item (click)="goToTestPage(item.id)" *ngIf="item.id == 2 && isSubscribed">
+        <ion-icon class="uc-icon bg-blue" [ios]="item.icon" [md]="item.icon" item-start></ion-icon>
+        <h3 class="title">{{item.title}}</h3>
+      </ion-item>
+
+      <ion-item (click)="goToTestPage(item.id)" *ngIf="item.id != 2">
+        <ion-icon class="uc-icon bg-blue" [ios]="item.icon" [md]="item.icon" item-start></ion-icon>
+        <h3 class="title">{{item.title}}</h3>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+
+</ion-content>

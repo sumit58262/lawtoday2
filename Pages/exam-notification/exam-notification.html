@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Exam Notifications</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="notificationData.length <= 0">
+    <ion-item class="list-result">
+      <ion-icon color="grey" ios="ios-alert-outline" md="ios-alert-outline"></ion-icon>
+      <p>No notification yet!</p>
+    </ion-item>
+  </ng-container>
+
+  <ng-container *ngIf="notificationData.length > 0">
+    <ion-item *ngFor="let item of notificationData" (click)="goToExamDetail(item)" text-wrap>
+      <ion-icon item-start ios="ios-notifications" md="md-notifications" color="danger"></ion-icon>
+      <p> {{item.title}}</p>
+      <ion-icon item-end ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>
+    </ion-item>
+  </ng-container>
+</ion-content>

@@ -1,0 +1,105 @@
+page-home {
+  .money-bag {
+    width: 40px;
+  }
+  .teleicon {
+    
+    width: 24px;
+  }
+
+  .link{
+   
+    padding-top: 5px;
+   // background: #9873E6;
+   background: #fff;
+    color: #fff;
+    font-weight: 300;
+  }
+
+  .uc-grid {
+    padding: 2px;
+
+    &:nth-of-type(2) {
+      .uc-grid__col {
+        &:nth-child(1) {
+          .uc-grid__item {
+            background: #FF5454;
+            color: #fff;
+          }
+        }
+
+        &:nth-child(2) {
+          .uc-grid__item {
+            background: #FF8133;
+            color: #fff;
+          }
+        }
+
+        &:nth-child(3) {
+          .uc-grid__item {
+            background: #5ab4fb;
+            color: #fff;
+          }
+        }
+        &:nth-child(4) {
+          .uc-grid__item {
+            background: rgb(91, 212, 162);
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    &:nth-of-type(4) {
+      .uc-grid__col {
+        &:nth-child(1) {
+          .uc-grid__item {
+            background: #FFBE1A;
+            color: #fff;
+          }
+        }
+
+        &:nth-child(2) {
+          .uc-grid__item {
+            background: #9873E6;
+            color: #fff;
+          }
+        }
+
+        &:nth-child(3) {
+          .uc-grid__item {
+            background: #5ab4fb;
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    &__item {
+      box-shadow: none;
+      margin: 4px;
+      width: calc(100% - 8px);
+      height: calc(100% - 8px);
+
+      ion-card-content {
+        margin-top: -20px;
+      }
+    }
+
+    &__title {
+      font-size: 1.8rem;
+      color: inherit;
+      font-weight: 300;
+    }
+
+    &__image {
+      border-color: #fff !important;
+    }
+  }
+
+  .card {
+    border-radius : 30px; 
+    
+  }
+
+}

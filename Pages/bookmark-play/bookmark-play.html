@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Law Today</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content #content padding>
+  <ng-container *ngIf="index + 1 <= questionData.length">
+    <form [formGroup]="questionForm" (ngSubmit)="onAnswer()">
+      <div class="question-content">
+        <h3> {{questionItems.name}}</h3>
+        <ion-list margin-vertical class="list-radio" radio-group (ionChange)="onSelect($event)">
+          <ion-item text-wrap class="list-option" *ngFor="let option of questionItems.answers">
+            <ion-label>{{option.answer}}</ion-label>
+            <ion-radio value="{{option.id}}" item-start [checked]="selectedChecked && option.id == selectedChecked"></ion-radio>
+          </ion-item>
+        </ion-list>
+        
+      </div>
+    </form>
+    <button ion-button color="danger" (click)="presentReportModal()">
+      Report Question
+     </button>
+  </ng-container>
+  <ng-container *ngIf="index + 1 > questionData.length">
+    <ion-item class="list-result">
+      <ion-icon color="success" ios="ios-checkmark-circle-outline" md="ios-checkmark-circle-outline"></ion-icon>
+      <h4 class="list-result-title ">
+        Congratulations! You have completed the test.
+      </h4>
+    </ion-item>
+  </ng-container>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row *ngIf="index + 1 <= questionData.length">
+      <ion-col col-5>
+        <button type="button" class="square" no-margin ion-button block color="primary"
+          (click)="loadPreviousQuestion()">Prev</button>
+      </ion-col>
+      <ion-col col-2>
+        <button type="button" class="square" no-margin ion-button block color="gray"
+          (click)="onQuestionAttempted()">
+          {{index + 1}}/{{questionData.length}} 
+        </button>
+      </ion-col>
+      <ion-col col-5>
+        <button class="square" no-margin ion-button block color="primary" (click)="onAnswer()">Next</button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="index + 1 > questionData.length">
+      <ion-col>
+        <button class="square" no-margin ion-button block color="success" (click)="onCompleted()">Finish</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+ 
+</ion-footer>

@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{notificationData.title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+ 
+<ion-content padding>
+  <div *ngIf="notificationData.video_full != null">
+    <iframe height="315" [src]="sanitizer.bypassSecurityTrustResourceUrl(notificationData.video_full)" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+ </div>
+<div class="text" (click)="handleClick($event)" [innerHtml] = "notificationData.content"></div>
+</ion-content>

@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>My Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-item-group *ngIf="userData">
+
+    <ion-item-divider no-padding padding-top text-center color="primary">
+      <ion-label no-margin>
+        <img class="user-pic" [src]="myProfile? myProfile.url :'assets/images/user_pic.png'" />
+        <ion-scroll class="story" scrollX="true" *ngIf="ischangePicture">
+          <div class="story_scroll" *ngFor="let item of imgData" (click)="setProfileImage(item)">
+            <div class="story_img_bg">
+              <img no-margin no-padding class="story_img profile-bg-color" [src]="item.url" alt=""
+                [class.active]="item.id == (myProfile ? myProfile.id :'')" />
+            </div>
+          </div>
+        </ion-scroll>
+        <button no-margin ion-button type="button" block text-capitalize color="primary" (click)="changePicture()">
+          {{ischangePicture ? 'Cancel': 'Change Profile Picture'}}
+        </button>
+      </ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-icon ios="md-person" md="md-person" item-start></ion-icon>
+      Name: {{userData.name}}
+    </ion-item>
+    <ion-item>
+      <ion-icon ios="ios-mail" md="ios-mail" item-start></ion-icon>
+      Email: <a href="mailto:{{userData.email}}">{{userData.email}}</a>
+   
+    </ion-item>
+    <ion-item>
+      <ion-icon ios="ios-call" md="ios-call" item-start></ion-icon>
+      Phone No: <a href="tel:{{userData.phone_number}}">{{userData.phone_number}}</a>
+    </ion-item>
+  </ion-item-group>
+
+  <div padding *ngIf="userData">
+    <button ion-button type="button" block text-capitalize color="danger"  *ngIf="userData.is_email_verified!=1" (click)="goToverify()">Verify Email</button> 
+    <button ion-button type="button" block text-capitalize color="success"  *ngIf="userData.is_email_verified==1">Verified</button> 
+    <button ion-button type="button" block text-capitalize color="primary" (click)="goToChangePassword()">
+      Change Password
+    </button>
+  </div>
+
+  <ion-list *ngIf="referralData" class="list" no-padding padding-top text-left color="primary">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>
+          <h4 text-center class="uc-title"><h3>Total People Referred: {{ referralData.length }}</h3></h4>
+        </ion-col>
+      </ion-row></ion-grid> 
+    <ion-item *ngFor="let item of referralData">
+      <h2><ul><li>{{ item }}</li></ul></h2>
+      </ion-item>
+    </ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>
+          <h4 text-center class="uc-title">Free Subscription</h4>
+        </ion-col>
+      </ion-row>
+      <ion-card >
+        <ion-card-content>
+          <div text-wrap >
+            <ul>
+            <p strong>How to get Subscription for free:<br></p>
+           <li> <p>1. Share the link to the app/website with your friends.</p></li>
+           <li> <p>2. Ask them to sign up and put your registered email id in referral column  on sign up page.</p></li>
+           <li> <p> 3. Get 5 people to sign up.</p></li>
+           <li> <p> 4. Drop us an email at lawtodayin@gmail.com that 5 people you referred have signed up.</p></li>
+           <li> <p> 5. We will give you 1 month membership free when 5 people you referred signs up.</p></li>
+           <li>  <p>6. We will give you 3 month membership free when 15 people you referred signs up.<br><br></p></li>
+           <li> <p>Tip: Make sure that the person you have referred has put your emial id in 'Referral Code" Column when they Sign up. Only people who fill your email id as 'Referral Code' column and verify their email id in profile page will be counted as your referral.</p></li>
+          </ul>
+          </div>
+          </ion-card-content>
+        </ion-card>
+    </ion-grid>
+</ion-content>

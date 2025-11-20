@@ -1,0 +1,28 @@
+page-flash-card {
+  .question-content {
+    min-height: calc(100vh - 200px);
+    
+  }
+  .bookmark {
+    width: 40px;
+  }
+  .question-name{
+    font-size: 2rem;
+    color: #000;
+    font-weight: 600;
+  }
+  .list-option{
+ //   background:url('../assets/images/cardbackground.jpg')
+ background-color: #bce8ee;;
+  }
+  .list-success{
+    //   background:url('../assets/images/cardbackground.jpg')
+    background-color: #aaf0b3;;
+    border-radius : 10px;
+     }
+  .card {
+    border-radius : 10px; 
+ //  background:url('../assets/images/cardbackground.jpg');
+    background-color: #bce8ee;
+  }
+}

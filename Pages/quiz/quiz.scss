@@ -1,0 +1,33 @@
+page-quiz {
+  .question-content {
+    min-height: calc(100vh - 125px);
+    text-align: justify
+  }
+  .list-option{
+    color: rgb(20, 19, 19);
+     }
+     .list-answer{
+      //   background:url('../assets/images/cardbackground.jpg')
+      
+      border-radius : 10px;
+      color: rgb(20, 19, 19);
+      padding-left: 2px;
+       }
+  .bookmark {
+    width: 25px;
+  }
+  iframe {
+    /* optional */
+    width: 100%;
+  }
+  .question-name{
+    font-size: 2rem;
+    color: #000;
+    font-weight: 600;
+  }
+  .card {
+    border-radius : 2px; 
+ background-color:rgb(212, 211, 211);
+  
+  }
+}

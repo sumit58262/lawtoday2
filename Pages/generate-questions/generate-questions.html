@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Generate Test</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="generateForm" (ngSubmit)="onFormSubmit()">
+    <ion-grid  no-padding >
+      <ion-row>
+        <ion-col col-12 class="form-float-field">
+          <ion-label>Enter test name</ion-label>
+          <ion-input autocomplete="off" formControlName="name" name="name" type="text" required>
+          </ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid no-padding formArrayName="data">
+      <ion-row *ngFor="let item of selectedTopicData; let i=index" [formGroupName]="i">
+        <ion-col>
+          <p>{{item.name}}</p>
+        </ion-col>
+        <ion-col col-auto>
+          <ion-input type="ext" hidden formControlName="id" inputmode="tel">
+          </ion-input>
+          <ion-input type="text" hidden formControlName="type" inputmode="tel">
+          </ion-input>
+          <ion-input type="number" class="question_qty" formControlName="question_count" inputmode="tel" required>
+          </ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <button class="square" no-margin ion-button block color="primary" (click)="getCheckedTopic()">Next</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <button block ion-button color="primary" type="button" (click)="onFormSubmit()">Generate</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

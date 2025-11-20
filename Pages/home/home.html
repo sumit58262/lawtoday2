@@ -1,0 +1,91 @@
+<ng-container *ngIf="isConnected">
+  <ion-header>
+    
+    <ion-navbar no-border-bottom>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button> 
+      <ion-title>Law Today</ion-title>
+       <ion-buttons end>
+        <button ion-button (click)="goToPageleaderboard()">
+          <img class="money-bag" src="assets/images/menu/leader1.png" />
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header> 
+  
+  <ion-content class="home">
+  
+    <ng-container *ngIf="categoryList">
+     
+      <ion-grid>
+        <ion-row margin-top> 
+          <ion-col col-12>
+            <h4 text-center class="uc-title">My Categories</h4>
+          </ion-col>
+        </ion-row> 
+      </ion-grid>
+    
+      <ion-grid margin-bottom class="uc-grid">
+        <ion-row>
+          <ion-col class="uc-grid__col" col-6 *ngFor="let item of categoryList; let i = index">
+            <ion-card class="uc-grid__item" (click)="goToPage(item.page)">
+              <div class="width-ratio ratio1-1">
+                <img class="uc-grid__image img-center" [src]="item.img" />
+              </div>
+              <ion-card-content >
+                <ion-card-title class="uc-grid__title" text-center text-wrap no-padding>
+                  {{item.title}}
+                </ion-card-title>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12>
+            <h4 text-center class="uc-title">My Activity</h4>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid margin-bottom class="uc-grid">
+        <ion-row justify-content-center>
+          <ion-col class="uc-grid__col" col-6 *ngFor="let item of activityList; let i = index">
+            <ion-card class="uc-grid__item" (click)="goToPage(item.page)">
+              <div class="width-ratio ratio1-1">
+                <img class="uc-grid__image img-center" [src]="item.img" />
+              </div>
+              <ion-card-content >
+                <ion-card-title class="uc-grid__title" text-center text-wrap no-padding>
+                  {{item.title}}
+                </ion-card-title>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ng-container>
+
+    <ion-list-header class="custom-loader" no-padding text-center *ngIf="!categoryList">
+      <img height="35" src="assets/images/ring.svg">
+    </ion-list-header>
+
+    <ion-fab bottom right>
+      <a href="https://t.me/judiciarytoday"><button ion-fab >
+        <ion-icon name="paper-plane"></ion-icon></button></a>
+   
+    </ion-fab>
+  </ion-content>
+</ng-container>
+<ng-container *ngIf="!isConnected">
+  <ion-content>
+    <ion-item class="list-result no-network">
+      <button margin-top color="primary" block ion-button type="button" (click)="checkNetworkConnection()">
+        Refresh
+      </button>
+    </ion-item>
+  </ion-content>
+</ng-container>

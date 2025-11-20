@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Law Today</ion-title>   
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+ 
+	<div padding>
+    <ion-segment [(ngModel)]="misc">
+      <ion-segment-button value="cases">
+        Case Laws
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  
+  <div [ngSwitch]="misc">
+
+    <ng-container *ngIf="caselawData.length <= 0">
+      <ion-item class="list-result">
+        <ion-icon color="grey" ios="ios-alert-outline" md="ios-alert-outline"></ion-icon>
+        <p>No Case Laws yet! Coming Soon...</p>
+      </ion-item>
+    </ng-container>
+    <ng-container *ngIf="caselawData.length >= 0">
+    <ion-list *ngSwitchCase="'cases'">
+      <ion-item *ngFor="let item of caselawData" (click)="goToExamDetail(item)">
+              <h2>{{item.title}}</h2>
+        </ion-item>
+      </ion-list>
+    </ng-container>
+  
+
+  </div>
+
+  
+
+<ion-footer >
+  
+</ion-footer>

@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Catgeories & Topics</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="list-default list-wrap ">
+    <ng-container *ngFor="let cat of categoryTestData; let i= index">
+      <ion-item padding-left>
+        <ion-label>{{cat.name}}</ion-label>
+        <ion-checkbox item-end [(ngModel)]="cat.isChecked"></ion-checkbox>
+      </ion-item>
+      <div class="topic__item" *ngIf="cat.topics">
+        <ng-container *ngFor="let topic of cat.topics; let i= index">
+          <ion-item padding-left>
+            <ion-label>{{topic.name}}</ion-label>
+            <ion-checkbox item-end [(ngModel)]="topic.isChecked"></ion-checkbox>
+          </ion-item>
+        </ng-container>
+      </div>
+    </ng-container>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <button class="square" no-margin ion-button block color="primary" (click)="getCheckedCategory()">Next</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

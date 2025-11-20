@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Bookmark List</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="bookmarkData.length > 0">
+    
+    <ion-card *ngFor="let item of bookmarkData; let i = index">
+      <ion-card-content *ngIf="item.question">
+       <div [innerHtml]="remove_linebreaks(item.question.name)">
+       </div>
+        <ng-container *ngFor="let choice of item.question.answers; let j=index">
+          <p *ngIf="choice.is_correct == 1 && hideMe">{{choice.answer}}</p>
+        </ng-container>
+
+      </ion-card-content>
+      <ion-row>
+        <ion-col text-right>
+          <button ion-button icon-start clear small (click)="deleteBookmarkData(item.question_id)">
+            <ion-icon ios="md-trash" md="md-trash"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ng-container>  
+  <ion-item class="list-result" *ngIf="bookmarkData.length <=0">
+    <ion-icon color="grey" ios="ios-alert-outline" md="ios-alert-outline"></ion-icon>
+    <h4 class="list-result-title">
+      No bookmark question data
+    </h4>
+  </ion-item>
+</ion-content>
+<ion-footer [hidden]="bookmarkData.length <=0">
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+      <button ion-button block color="primary" *ngIf="hideMe != true" (click)="hide()">Show Answers</button>
+       <button ion-button block color="danger" *ngIf="hideMe == true" (click)="hide()">Hide Answers</button>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button block color="primary" (click)="goToStartFreeTest()">
+          Play Bookmarks
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

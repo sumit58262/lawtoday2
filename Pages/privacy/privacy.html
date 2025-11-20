@@ -1,0 +1,14 @@
+<ion-header no-border-bottom>
+  <ion-navbar class="uc-header header-dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Privacy Policy
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <iframe [src]="safeWebUrl" frameborder="0" style="width:100%; min-height:320px; height:100%;" (load)="removeLoading()"></iframe>
+</ion-content>

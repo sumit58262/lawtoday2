@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Law Today Test</ion-title>
+   <ion-buttons end *ngIf="index + 1 <= questionData.length">
+     
+      <button *ngIf="questionItems.id != selectedBookmark" ion-button (click)="addBookmark()">
+        <img class="bookmark" src="assets/images/cat/bookmark.png" />
+      </button>
+      <button ion-button *ngIf="selectedBookmark && questionItems.id == selectedBookmark" (click)="addBookmark()">
+        <img class="bookmark" src="assets/images/cat/bookmarked.png" />
+      </button> 
+    </ion-buttons> 
+  </ion-navbar>
+</ion-header>
+
+<ion-content #content padding>
+  <ng-container *ngIf="index + 1 <= questionData.length && quizStart == true">
+    
+      <div class="question-content">
+        <form [formGroup]="questionForm" (ngSubmit)="onAnswer()">
+        <div class="question-name"><div
+            [innerHtml]="remove_linebreaks(questionItems.name)"></div>
+        </div>
+        <div style="display: flex; justify-content: flex-end" [innerHtml]="remove_linebreaks(questionItems.exam)"></div>
+        <ion-list margin-vertical class="list-radio" radio-group (ionChange)="onSelect($event)">
+          <ion-item text-wrap class="list-option" *ngFor="let option of questionItems.answers">
+            <ion-label>{{option.answer}}</ion-label>
+            <ion-radio value="{{option.id}}" item-start [checked]="selectedChecked && option.id == selectedChecked">
+            </ion-radio>
+          </ion-item>
+        </ion-list>
+      </form>
+      <button ion-button color="success" (click)="presentCorrectansModal()">Show Answer</button>
+      <button ion-button color="danger" (click)="presentReportModal()">
+       Report Question
+      </button>
+      </div>
+   
+   
+  </ng-container>
+  <ng-container *ngIf="index + 1 > questionData.length">
+    <ion-item class="list-result show-result">
+      <ion-grid class="result-info">
+        <ion-row>
+          <ion-col col-6 class="result-info__col">
+            <div class="badge badge-primary">
+              <strong>{{questionData.length}}</strong>
+              <p>Total Questions</p>
+            </div>
+          </ion-col>
+          <ion-col col-6 class="result-info__col">
+            <div class="badge badge-warning">
+              <strong>{{result.length}}</strong>
+              <p>Total Attempted</p>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-6 class="result-info__col">
+            <div class="badge badge-success">
+              <strong>{{getTotalCorrect(result)}}</strong>
+              <p>Total Correct</p>
+            </div>
+          </ion-col>
+          <ion-col col-6 class="result-info__col">
+            <div class="badge badge-danger">
+              <strong>{{getTotalInCorrect(result)}}</strong>
+              <p>Total Incorrect</p>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <div class="result-msg">
+        <ion-icon color="success" ios="ios-checkmark-circle-outline" md="ios-checkmark-circle-outline"></ion-icon>
+        <h4 class="list-result-title ">
+          Congratulations! You have complete test successfully.
+        </h4>
+      </div>
+    </ion-item>
+  </ng-container>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row *ngIf="index + 1 <= questionData.length">
+      <ion-col col-5>
+        <button type="button" class="square" no-margin ion-button block color="primary"
+          (click)="loadPreviousQuestion()">Prev</button>
+      </ion-col>
+      <ion-col col-2>
+        <button type="button" class="square" no-margin ion-button block color="gray"
+          (click)="onQuestionAttempted()">
+          {{index + 1}}/{{questionData.length}} 
+        </button>
+      </ion-col>
+      <ion-col col-5>
+        <button class="square" no-margin ion-button block color="primary" (click)="onAnswer()">Next</button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="index + 1 > questionData.length">
+      <ion-col col-6>
+        <button class="square" no-margin ion-button block color="primary" (click)="onReviewTest()">Review
+          Answers</button>
+      </ion-col>
+      <ion-col col-6>
+        <button class="square" no-margin ion-button block color="success" (click)="onCompleted()">Completed</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

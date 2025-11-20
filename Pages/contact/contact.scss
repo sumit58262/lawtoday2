@@ -1,0 +1,13 @@
+page-contact {
+    .item-divider-md,
+    .item-divider-ios{
+        background: transparent !important;
+        color:#fff !important;
+        padding-left:0px;
+        margin-top:16px;
+        ion-label{
+            font-size:1.8rem;
+            font-weight:700;
+        }
+    }
+}

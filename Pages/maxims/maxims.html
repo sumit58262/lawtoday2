@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Law Today</ion-title>   
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+ 
+	<div padding>
+    <ion-segment [(ngModel)]="misc">
+    
+      <ion-segment-button value="syllabus">
+        Syllabus
+      </ion-segment-button>
+      <ion-segment-button value="maxims">
+        Maxims
+      </ion-segment-button>
+
+    </ion-segment>
+   
+  </div>
+  
+  <div [ngSwitch]="misc">
+    <ion-list *ngSwitchCase="'maxims'">
+          <ion-item *ngFor="let item of maxims" (click)="goToExamDetail(item)" >
+        <ion-avatar item-start>
+          <img src="assets/images/avatar/{{ item.img }}">
+        </ion-avatar>
+        <h2>{{ item.title }}</h2>
+        <h3>{{ item.content }}</h3> 
+        </ion-item>
+      </ion-list>
+  
+    <ion-list *ngSwitchCase="'syllabus'">
+      <ion-item  *ngFor="let item1 of states" >
+        <ion-avatar item-start>
+          <img src="assets/images/states/{{ item1.img }}">
+        </ion-avatar>
+        <h2>{{ item1.title }}</h2>
+        <ion-avatar  item-end>
+         <a href="#" (click)=handleClick(item1.pdf)> <img src="assets/images/states/pdf.png"></a>
+        </ion-avatar>
+        </ion-item>
+      </ion-list>
+    
+  
+  </div>
+
+  
+
+<ion-footer >
+  
+</ion-footer>

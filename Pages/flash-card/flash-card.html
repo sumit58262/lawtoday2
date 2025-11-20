@@ -1,0 +1,68 @@
+<ion-content >
+<ion-navbar>
+  <ion-title>Flashcards</ion-title>
+  <ion-buttons end>
+  </ion-buttons>
+</ion-navbar>
+
+<ion-card>
+  
+<ion-card-header>
+  
+</ion-card-header> 
+
+<ion-card-content #content padding>
+  <div class="question-content" *ngIf="index + 1 <= questionData.length">
+    <div class="question-name"><div [innerHtml]="remove_linebreaks(questionItems.name)"></div></div>
+    
+      <ion-item text-wrap  [class.list-option]="option.is_correct != 1" [class.list-success]="option.is_correct == 1"
+        *ngFor="let option of questionItems.answers; let i = index" color="white" >
+        <ion-icon  *ngIf="option.is_correct != 1" item-end></ion-icon>
+        <ion-icon  color="white" *ngIf="option.is_correct == 1" item-end ></ion-icon>
+        <ion-label>{{option.answer}}</ion-label>
+      </ion-item>
+      <div></div>
+      <button ion-button color="danger" (click)="presentReportModal()"> Report Question </button>
+  </div>
+
+  <ng-container *ngIf="index + 1 > questionData.length">
+    <ion-item class="list-result">
+      <ion-icon color="success" ios="ios-checkmark-circle-outline" md="ios-checkmark-circle-outline"></ion-icon>
+      <h4 class="list-result-title ">
+        Congratulations! You have finished viewing flashcards successfully.
+      </h4>
+    </ion-item>
+  </ng-container>
+
+</ion-card-content>
+</ion-card>
+
+</ion-content>
+<ion-footer>
+
+  <ion-grid>
+        <ion-row *ngIf="index + 1 <= questionData.length">
+      <ion-col col-5>
+        <button type="button" class="square" no-margin ion-button block color="primary" (click)="onPrev()">Prev</button>
+      </ion-col>
+      <ion-col col-2>
+        <button type="button" class="square" no-margin ion-button block color="gray"
+          (click)="onQuestionAttempted()">
+          {{index + 1}}/{{questionData.length}} 
+        </button>
+      </ion-col>
+      <ion-col col-5>
+        <button class="square" no-margin ion-button block color="primary" (click)="onNext()">Next</button>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row *ngIf="index + 1 > questionData.length">
+      <ion-col>
+        <button class="square" no-margin ion-button block color="success" (click)="onCompleted()">Home</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-footer>
+
